@@ -7,6 +7,10 @@
 import os
 import json
 from py2neo import Graph,Node
+# import sys
+# reload(sys)
+# sys.setdefaultencoding('utf8')
+
 
 class MedicalGraph:
     def __init__(self):
@@ -15,8 +19,8 @@ class MedicalGraph:
         self.g = Graph(
             host="127.0.0.1",  # neo4j 搭载服务器的ip地址，ifconfig可获取到
             http_port=7474,  # neo4j 服务器监听的端口号
-            user="lhy",  # 数据库user name，如果没有更改过，应该是neo4j
-            password="lhy123")
+            user="neo4j",  # 数据库user name，如果没有更改过，应该是neo4j
+            password="admin")
 
     '''读取文件'''
     def read_nodes(self):
@@ -200,17 +204,17 @@ class MedicalGraph:
     '''创建实体关系边'''
     def create_graphrels(self):
         Drugs, Foods, Checks, Departments, Producers, Symptoms, Diseases, disease_infos, rels_check, rels_recommandeat, rels_noteat, rels_doeat, rels_department, rels_commonddrug, rels_drug_producer, rels_recommanddrug,rels_symptom, rels_acompany, rels_category = self.read_nodes()
-        self.create_relationship('Disease', 'Food', rels_recommandeat, 'recommand_eat', '推荐食谱')
-        self.create_relationship('Disease', 'Food', rels_noteat, 'no_eat', '忌吃')
-        self.create_relationship('Disease', 'Food', rels_doeat, 'do_eat', '宜吃')
-        self.create_relationship('Department', 'Department', rels_department, 'belongs_to', '属于')
-        self.create_relationship('Disease', 'Drug', rels_commonddrug, 'common_drug', '常用药品')
-        self.create_relationship('Producer', 'Drug', rels_drug_producer, 'drugs_of', '生产药品')
-        self.create_relationship('Disease', 'Drug', rels_recommanddrug, 'recommand_drug', '好评药品')
-        self.create_relationship('Disease', 'Check', rels_check, 'need_check', '诊断检查')
-        self.create_relationship('Disease', 'Symptom', rels_symptom, 'has_symptom', '症状')
-        self.create_relationship('Disease', 'Disease', rels_acompany, 'acompany_with', '并发症')
-        self.create_relationship('Disease', 'Department', rels_category, 'belongs_to', '所属科室')
+        self.create_relationship('Disease', 'Food', rels_recommandeat, 'recommand_eat', u'推荐食谱')
+        # self.create_relationship('Disease', 'Food', rels_noteat, 'no_eat', u'忌吃')
+        # self.create_relationship('Disease', 'Food', rels_doeat, 'do_eat', u'宜吃')
+        # self.create_relationship('Department', 'Department', rels_department, 'belongs_to', u'属于')
+        # self.create_relationship('Disease', 'Drug', rels_commonddrug, 'common_drug', u'常用药品')
+        # self.create_relationship('Producer', 'Drug', rels_drug_producer, 'drugs_of', u'生产药品')
+        # self.create_relationship('Disease', 'Drug', rels_recommanddrug, 'recommand_drug', u'好评药品')
+        # self.create_relationship('Disease', 'Check', rels_check, 'need_check', u'诊断检查')
+        # self.create_relationship('Disease', 'Symptom', rels_symptom, 'has_symptom', u'症状')
+        # self.create_relationship('Disease', 'Disease', rels_acompany, 'acompany_with', u'并发症')
+        # self.create_relationship('Disease', 'Department', rels_category, 'belongs_to', u'所属科室')
 
     '''创建实体关联边'''
     def create_relationship(self, start_node, end_node, edges, rel_type, rel_name):
@@ -267,4 +271,6 @@ class MedicalGraph:
 
 if __name__ == '__main__':
     handler = MedicalGraph()
+    #handler.create_graphnodes()
+    handler.create_graphrels()
     # handler.export_data()
