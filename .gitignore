@@ -126,3 +126,21 @@ dmypy.json
 
 .idea/
 .DS_Store
+/dict/check.txt
+/dict/deny.txt
+/dict/department.txt
+/dict/disease.txt
+/dict/disease_info.xls
+/dict/drug.txt
+/dict/food.txt
+/dict/producer.txt
+/dict/symptom.txt
+!/dict/disease.txt
+!/dict/drug.txt
+!/dict/symptom.txt
+!/dict/check.txt
+!/dict/food.txt
+!/dict/deny.txt
+!/dict/department.txt
+!/dict/producer.txt
+!/dict/disease_info.xls

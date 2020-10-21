@@ -51,7 +51,7 @@ class MedicalGraph:
 
 
         count = 0
-        for data in open(self.data_path):
+        for data in open(self.data_path, encoding="utf-8"):
             disease_dict = {}
             count += 1
             print(count)
@@ -241,13 +241,13 @@ class MedicalGraph:
     '''导出数据'''
     def export_data(self):
         Drugs, Foods, Checks, Departments, Producers, Symptoms, Diseases, disease_infos, rels_check, rels_recommandeat, rels_noteat, rels_doeat, rels_department, rels_commonddrug, rels_drug_producer, rels_recommanddrug, rels_symptom, rels_acompany, rels_category = self.read_nodes()
-        f_drug = open('drug.txt', 'w+')
-        f_food = open('food.txt', 'w+')
-        f_check = open('check.txt', 'w+')
-        f_department = open('department.txt', 'w+')
-        f_producer = open('producer.txt', 'w+')
-        f_symptom = open('symptoms.txt', 'w+')
-        f_disease = open('disease.txt', 'w+')
+        f_drug = open('dict/drug.txt', 'w+', encoding='utf-8')
+        f_food = open('dict/food.txt', 'w+', encoding='utf-8')
+        f_check = open('dict/check.txt', 'w+', encoding='utf-8')
+        f_department = open('dict/department.txt', 'w+', encoding='utf-8')
+        f_producer = open('dict/producer.txt', 'w+', encoding='utf-8')
+        f_symptom = open('dict/symptom.txt', 'w+', encoding='utf-8')
+        f_disease = open('dict/disease.txt', 'w+', encoding='utf-8')
 
         f_drug.write('\n'.join(list(Drugs)))
         f_food.write('\n'.join(list(Foods)))
@@ -271,6 +271,8 @@ class MedicalGraph:
 
 if __name__ == '__main__':
     handler = MedicalGraph()
-    #handler.create_graphnodes()
-    handler.create_graphrels()
-    # handler.export_data()
+    print(u"step1:导入图谱节点中")
+    # handler.create_graphnodes()
+    print(u"step2:导入图谱边中")
+    # handler.create_graphrels()
+    handler.export_data()
